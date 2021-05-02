@@ -1,3 +1,12 @@
+import docx2txt
+from flask import * 
+import os
+from flask import render_template, request, redirect, url_for
+
+
+# replace following line with location of your .docx file
+#file_text = docx2txt.process(b)
+
 
 import numpy as np #imported numpy and Assigned as np
 import pandas as pd #imported pandas and Assigned as pd
@@ -37,11 +46,22 @@ def codelogin():
 
 @app.route('/predict',methods=['POST','GET'])
 def predicts():  
-    projectpath = request.form['inputdata'] 
-    a=str(projectpath)
+    if request.method == 'POST':  
+        f = request.files['file']  
+        a=f.save(f.filename)
+        b=f.filename
+    file_text = docx2txt.process(b)
+    
+
+
+    car = request.form['inputdata'] 
+    a=str(car)
     prediction=(model.predict(vectorizer.transform([a])))
-    #prediction = model.predict[a]
-    return render_template('conform.html',dat2="{} ".format(prediction))
+
+    aa=str(file_text)
+    prediction1=(model.predict(vectorizer.transform([aa])))
+    
+    return render_template('conform.html',dat2="{} ".format(prediction),dat3="{} ".format(prediction1))
 
 if __name__ == "__main__":
      #app.run(debug=True)

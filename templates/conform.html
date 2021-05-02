@@ -16,27 +16,18 @@ table, th, td {
 
 <body align="center" style="background-color:#ccccff">
 <h3> Health Record Refering To Doctor's</h3> 
-          
-  <tr> <th>Document Report Refering Medical Specialty    <h4> {{dat3}}&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;</h4> </th>          
- <th>>Email,Text,Sms Report Refering Medical Specialty<h4>&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; {{dat2}}</h4></th></tr>
+          <br>
+  <tr> <th>Document Report Refering Medical Specialty   [{{dat4}}] <h4> &gt;&gt;&gt;&gt;{{dat3}} </h4> </th> 
+    <br><br>
+ <th>Email,Text,Sms Report Refering Medical Specialty<h4>&gt;&gt;&gt;&gt;&gt; {{dat2}}</h4></th></tr>
   
-  
-  
-  
-  
-<tr>                                                                                                                                                                        
-<td>                                                                          
-{{dat2}}</td></tr>  
-<br>
-<tr>                                                                                                                                                                        
-<td>                                                                          
-{{dat3}}</td></tr>                                                                                                                                                                                                                                                
-</table>
+
 <form action="/recheck" method="post">
  <button type="submit" class="btn-large waves-effect waves-light orange">Check Other Reports</button>
 </form>
+  <br>
 <form action="/loginacc" method="post"> 
-  <button type="submit">Login </button><p>To Book Appointment</p>
+  <button type="submit">Login </button><p style="color:red;">To Book Appointment</p>
 </form>
 </body>
 </html>

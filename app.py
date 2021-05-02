@@ -61,7 +61,7 @@ def predicts():
     aa=str(file_text)
     prediction1=(model.predict(vectorizer.transform([aa])))
     
-    return render_template('conform.html',dat2="{} ".format(prediction),dat3="{} ".format(prediction1))
+    return render_template('conform.html',dat2="{} ".format(prediction),dat3="{} ".format(prediction1),dat4="{} ".format(b))
 
 if __name__ == "__main__":
      #app.run(debug=True)

@@ -1,10 +1,12 @@
-import numpy as np
-import datetime
-from flask import Flask, request, jsonify, render_template
+
+import numpy as np #imported numpy and Assigned as np
+import pandas as pd #imported pandas and Assigned as pd
 import pickle
+from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 model = pickle.load(open('model.pkl', 'rb'))
+vectorizer=pickle.load(open('vectorizer.pkl', 'rb'))
 
 @app.route('/')
 def home():
@@ -37,10 +39,10 @@ def codelogin():
 def predicts():  
     projectpath = request.form['inputdata'] 
     a=str(projectpath)
-    prediction=(clf.predict(count_vect.transform([a])))
-    #prediction = model.predict(a)
+    prediction=(model.predict(vectorizer.transform([a])))
+    #prediction = model.predict[a]
     return render_template('conform.html',dat2="{} ".format(prediction))
 
 if __name__ == "__main__":
      #app.run(debug=True)
-     app.run(host="0.0.0.0",port=6442)
+     app.run(host="127.0.0.1",port=6442)

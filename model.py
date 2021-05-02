@@ -1,11 +1,8 @@
 import numpy as np #imported numpy and Assigned as np
 import pandas as pd #imported pandas and Assigned as pd
-import statsmodels.api as sm
 import pickle
-from statsmodels.tsa.arima_model import ARIMAResults
-import matplotlib.pyplot as plt #Used to plot the Graph by plt
 df = pd.read_csv('mtsamples.csv')
-#df.head()
+
 col = ['medical_specialty', 'description']
 df = df[col]
 df.columns = ['medical_specialty', 'description']
@@ -18,10 +15,10 @@ id_to_category = dict(category_id_df[['category_id', 'medical_specialty']].value
 
 df.head()
 
-import matplotlib.pyplot as plt
-fig = plt.figure(figsize=(8,6))
-df.groupby('medical_specialty').description.count().plot.bar(ylim=0)
-plt.show()
+#import matplotlib.pyplot as plt
+#fig = plt.figure(figsize=(8,6))
+#df.groupby('medical_specialty').description.count().plot.bar(ylim=0)
+#plt.show()
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -35,15 +32,15 @@ from sklearn.feature_selection import chi2
 import numpy as np
 
 N = 2
-for medical_specialty, category_id in sorted(category_to_id.items()):
-  features_chi2 = chi2(features, labels == category_id)
-  indices = np.argsort(features_chi2[0])
-  feature_names = np.array(tfidf.get_feature_names())[indices]
-  unigrams = [v for v in feature_names if len(v.split(' ')) == 1]
-  bigrams = [v for v in feature_names if len(v.split(' ')) == 2]
-  print("# '{}':".format(medical_specialty))
-  print("  . Most correlated unigrams:\n       . {}".format('\n       . '.join(unigrams[-N:])))
-  print("  . Most correlated bigrams:\n       . {}".format('\n       . '.join(bigrams[-N:])))
+#for medical_specialty, category_id in sorted(category_to_id.items()):
+ # features_chi2 = chi2(features, labels == category_id)
+  #indices = np.argsort(features_chi2[0])
+  #feature_names = np.array(tfidf.get_feature_names())[indices]
+  #unigrams = [v for v in feature_names if len(v.split(' ')) == 1]
+  #bigrams = [v for v in feature_names if len(v.split(' ')) == 2]
+  #print("# '{}':".format(medical_specialty))
+  #print("  . Most correlated unigrams:\n       . {}".format('\n       . '.join(unigrams[-N:])))
+  #print("  . Most correlated bigrams:\n       . {}".format('\n       . '.join(bigrams[-N:])))
   
   
 from sklearn.model_selection import train_test_split
@@ -55,16 +52,33 @@ count_vect = CountVectorizer()
 X_train_counts = count_vect.fit_transform(X_train)
 tfidf_transformer = TfidfTransformer()
 X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
-clf = MultinomialNB().fit(X_train_tfidf, y_train)
+#clf = MultinomialNB().fit(X_train_tfidf, y_train)
+clf = MultinomialNB().fit(X_train_tfidf,y_train)
+
+pickle.dump(clf,open('model.pkl','wb'))
+
+pickle.dump(count_vect,open('vectorizer.pkl', 'wb'))
 
 
-print("RESULT@@@")
+
+
+#print("RESULT@@@")
 
 print(clf.predict(count_vect.transform([" Nasal endoscopy and partial rhinectomy due to squamous cell carcinoma, left nasal cavity."])))
 print(clf.predict(count_vect.transform(["  Whole body PET scanning."])))
 
+print("end_end_end")
 #df[df['description'] == "Fertile male with completed family.  Elective male sterilization via bilateral vasectomy."]
 
-print("End REsult")
-#TESTING DIFFERENT MODELS
-pickle.dump(clf, open('model.pkl','wb'))
+
+
+
+
+
+
+
+
+
+
+
+

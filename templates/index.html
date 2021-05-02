@@ -24,7 +24,7 @@ table, th, td {
 <div >
 <form action="/predict" method="post" enctype="multipart/form-data">
   <h3 align ="left" style="color:darkblue">Upload Document File</h3>
-        <input type="file" name="file"/>  <p style="color:red;">in .docx Format Only</p>
+        <input type="file" name="file" REQUIRED/>  <p style="color:red;">in .docx Format Only</p>
          
      
                                      
@@ -33,7 +33,7 @@ table, th, td {
 <h3 align ="right" style="color:darkblue">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enter Text
-<textarea id="w3review" name="inputdata" rows="5" cols="50"> </textarea>
+<textarea id="w3review" name="inputdata" rows="5" cols="50"  REQUIRED> </textarea>
 
 </h3 >
 <br>

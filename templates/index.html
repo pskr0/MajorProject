@@ -22,8 +22,14 @@ table, th, td {
 <BR>
 <BR>
 <div >
-<form action="/predict" method="post">
-                                                                                                                                                                                                          
+<form action="/predict" method="post" enctype="multipart/form-data">
+  
+        <input type="file" name="file" />  
+        <input type = "submit" value="Upload">  
+     
+                                     
+                                     
+                                     
 
 <br>
 <h3 align ="center" style="color:darkblue">
@@ -33,6 +39,8 @@ table, th, td {
 
 </h3 >
 <br>
+                                             <input type="file" name="file" />  
+        <input type = "submit" value="Upload">  
 <h4 align = "center">
          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="submit" class="btn-large waves-effect waves-light orange">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Predict Text</button>
 </form>

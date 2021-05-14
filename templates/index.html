@@ -6,41 +6,55 @@
 <TITLE>
 MAJOR PROJECT
 </TITLE>
+<link type="text/css" rel="stylesheet" href="/MajorProject/static/style.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 table, th, td {
   border: 1px solid white;
   border-collapse: collapse;
 }
+#INPUTFILE{
+  align-content: center;
+  margin-left:42%;
+}
+.heading{
+  text-align: center;
+}
+hr{
+  border: 1px solid olive;
+}
 </style>
 </HEAD>
-<BODY  style="background-image: url('/static/image.jpg');color:brown; height:100%;background-repeat:no-repeat;background-size:100% 140%;>
-<H1 STYLE="background-color: orange;color:orange";>
-<a ALIGN="center" style="text-decoration:none" href="/filedata"><h1> PROTOTYPE WEB MODEL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1></a>
+<BODY  style="background-color: blanchedalmond;">
+  <hr>
+<H1 STYLE="background-color: orange;color:orange">
+<a class = "heading" style="text-decoration:none" href="/filedata"><h1> Health Document Classifier Using ML</h1></a>
 </form>
 </H1>
+<hr>
 <BR>
 <BR>
 <BR>
 <div >
-<form action="/predict" method="post" enctype="multipart/form-data">
-  <h3 align ="left" style="color:darkblue">Upload Document File</h3>
-        <input type="file" name="file" REQUIRED/>  <p style="color:red;">in .docx Format Only</p>
+<form action="/predict" method="post" align="center" enctype="multipart/form-data">
+  <h3 style="color:darkblue">Upload Document File</h3>
+    <input id = "INPUTFILE" type="file" name="file" align = "center" REQUIRED/> </h3> <p style="color:red;">in .docx Format Only</p>
          
-     
                                      
                                      
 
-<h3 align ="right" style="color:darkblue">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enter Text
+   <h3 align ="center" style="color:darkblue">
+Enter Text </h3>
 <textarea id="w3review" name="inputdata" rows="5" cols="50"  REQUIRED></textarea>
 
-</h3 >
-<br>
+
                                              
-        
-<h4 align = "center">
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="submit" class="btn-large waves-effect waves-light orange">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Predict Text</button>
+
+<h3 align = "center">
+          <button type="submit" class="btn btn-lg btn-primary">Predict Text</button>
+        </h3>
 </form>
 
 

@@ -28,25 +28,27 @@ features = tfidf.fit_transform(df.description).toarray()
 labels = df.category_id
 features.shape
 
+
+
+pickle.dump(tfidf,open('tfidf.pkl','wb'))
+
+
 from sklearn.feature_selection import chi2
 import numpy as np
 
 N = 2
-#for medical_specialty, category_id in sorted(category_to_id.items()):
- # features_chi2 = chi2(features, labels == category_id)
-  #indices = np.argsort(features_chi2[0])
-  #feature_names = np.array(tfidf.get_feature_names())[indices]
-  #unigrams = [v for v in feature_names if len(v.split(' ')) == 1]
-  #bigrams = [v for v in feature_names if len(v.split(' ')) == 2]
-  #print("# '{}':".format(medical_specialty))
-  #print("  . Most correlated unigrams:\n       . {}".format('\n       . '.join(unigrams[-N:])))
-  #print("  . Most correlated bigrams:\n       . {}".format('\n       . '.join(bigrams[-N:])))
+
   
   
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.svm import LinearSVC
+
 X_train, X_test, y_train, y_test = train_test_split(df['description'], df['medical_specialty'], random_state = 0)
 count_vect = CountVectorizer()
 X_train_counts = count_vect.fit_transform(X_train)
@@ -61,6 +63,65 @@ pickle.dump(count_vect,open('vectorizer.pkl', 'wb'))
 
 
 
+####LINEAR SVC MODEL PREDICTION
+from sklearn.model_selection import train_test_split
+
+model3 = LinearSVC()
+
+X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.2, random_state=3)
+model3.fit(X_train, y_train)
+y_pred = model3.predict(X_test)
+
+texts = ["Consult for laparoscopic gastric bypass.",
+		 "Cerebral Angiogram - moyamoya disease."]
+text_features = tfidf.transform(texts)
+predictions = model3.predict(text_features)
+for text, predicted in zip(texts, predictions):
+  print('"{}"'.format(text))
+  print("  - Predicted as: '{}'".format(id_to_category[predicted]))
+  print("")
+
+
+pickle.dump(model3,open('linearsvc.pkl', 'wb'))
+
+
+####
+
+
+####random forest MODEL PREDICTION
+from sklearn.model_selection import train_test_split
+
+
+
+
+#pickle.dump(random,open('random.pkl','wb'))
+
+
+
+
+
+
+
+model4 = RandomForestClassifier()
+X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.2, random_state=3)
+model4.fit(X_train, y_train)
+y_pred = model4.predict(X_test)
+
+#texts = ["Consult for laparoscopic gastric bypass.",
+	#	 "Cerebral Angiogram - moyamoya disease."]
+text_features = tfidf.transform(texts)
+predictions = model4.predict(text_features)
+#for text, predicted in zip(texts, predictions):
+ # print('"{}"'.format(text))
+  #print("  - Predicted as: '{}'".format(id_to_category[predicted]))
+ # print("")
+
+
+pickle.dump(model4,open('random.pkl', 'wb'))
+pickle.dump(id_to_category,open('id_to_category.pkl','wb'))
+
+####
+
 
 #print("RESULT@@@")
 
@@ -68,17 +129,3 @@ print(clf.predict(count_vect.transform([" Nasal endoscopy and partial rhinectomy
 print(clf.predict(count_vect.transform(["  Whole body PET scanning."])))
 
 print("end_end_end")
-#df[df['description'] == "Fertile male with completed family.  Elective male sterilization via bilateral vasectomy."]
-
-
-
-
-
-
-
-
-
-
-
-
-

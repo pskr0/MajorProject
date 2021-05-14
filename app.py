@@ -16,6 +16,10 @@ from flask import Flask, request, jsonify, render_template
 app = Flask(__name__)
 model = pickle.load(open('model.pkl', 'rb'))
 vectorizer=pickle.load(open('vectorizer.pkl', 'rb'))
+linear=pickle.load(open('linearsvc.pkl', 'rb'))
+random = pickle.load(open('random.pkl', 'rb'))
+tfidf=pickle.load(open('tfidf.pkl', 'rb'))
+id_to_category=pickle.load(open('id_to_category.pkl', 'rb'))
 
 @app.route('/')
 def home():
@@ -56,12 +60,28 @@ def predicts():
 
     car = request.form['inputdata'] 
     a=str(car)
-    prediction=(model.predict(vectorizer.transform([a])))
-
-    aa=str(file_text)
-    prediction1=(model.predict(vectorizer.transform([aa])))
     
-    return render_template('conform.html',dat2="{} ".format(prediction),dat3="{} ".format(prediction1),dat4="{} ".format(b))
+    #NB
+    #prediction=(random.predict(vectorizer.transform([a])))
+    #RANDOMFOREST MODEL
+    predictions=(random.predict(tfidf.transform([a])))
+    for text, predicted in zip(a, predictions):
+    #print('"{}"'.format(text))
+      prediction0=id_to_category[predicted]
+    
+    
+    aa=str(file_text)
+    #NB
+    #prediction1=(random.predict(vectorizer.transform([aa])))
+    #RANDOMFOREST
+    prediction1=(random.predict(tfidf.transform([aa])))
+    for text, predicted in zip(aa, prediction1):
+  #print('"{}"'.format(text))
+      prediction11=id_to_category[predicted]
+    
+    
+    return render_template('conform.html',dat2="{} ".format(prediction0),dat3="{} ".format(prediction11),dat4="{} ".format(b))
+    #prediction1=(random.predict(tfidf.transform([a])))
 
 if __name__ == "__main__":
      #app.run(debug=True)

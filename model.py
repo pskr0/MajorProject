@@ -3,9 +3,9 @@ import pandas as pd #imported pandas and Assigned as pd
 import pickle
 df = pd.read_csv('mtsamples.csv')
 
-col = ['medical_specialty', 'description']
+col = ['medical_specialty','keywords']
 df = df[col]
-df.columns = ['medical_specialty', 'description']
+df.columns = ['medical_specialty','keywords']
 
 df['category_id'] = df['medical_specialty'].factorize()[0]
 from io import StringIO
@@ -21,10 +21,8 @@ df.head()
 #plt.show()
 
 from sklearn.feature_extraction.text import TfidfVectorizer
-
 tfidf = TfidfVectorizer(sublinear_tf=True, min_df=5, norm='l2', encoding='latin-1', ngram_range=(1, 2), stop_words='english')
-
-features = tfidf.fit_transform(df.description).toarray()
+features = tfidf.fit_transform(df.keywords).toarray()
 labels = df.category_id
 features.shape
 
@@ -36,7 +34,7 @@ pickle.dump(tfidf,open('tfidf.pkl','wb'))
 from sklearn.feature_selection import chi2
 import numpy as np
 
-N = 2
+#N = 2
 
   
   
@@ -46,86 +44,64 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.naive_bayes import MultinomialNB
 from sklearn.svm import LinearSVC
 
-X_train, X_test, y_train, y_test = train_test_split(df['description'], df['medical_specialty'], random_state = 0)
+####MultinomialNB MODEL PREDICTION
+print("Running Multinomial NB Model Training & Testing")
+X_train, X_test, y_train, y_test = train_test_split(df['keywords'], df['medical_specialty'], random_state = 0)
 count_vect = CountVectorizer()
 X_train_counts = count_vect.fit_transform(X_train)
 tfidf_transformer = TfidfTransformer()
 X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
-#clf = MultinomialNB().fit(X_train_tfidf, y_train)
-clf = MultinomialNB().fit(X_train_tfidf,y_train)
 
-pickle.dump(clf,open('model.pkl','wb'))
+multinb = MultinomialNB().fit(X_train_tfidf,y_train)
+print("Creating Multinomial NB Model Pickle Object Code")
+pickle.dump(multinb,open('multinb.pkl','wb'))
 
 pickle.dump(count_vect,open('vectorizer.pkl', 'wb'))
 
 
 
 ####LINEAR SVC MODEL PREDICTION
+print("Running LINEAR SVC Model Training & Testing")
 from sklearn.model_selection import train_test_split
 
-model3 = LinearSVC()
+linear = LinearSVC()
 
 X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.2, random_state=3)
-model3.fit(X_train, y_train)
-y_pred = model3.predict(X_test)
-
-texts = ["Consult for laparoscopic gastric bypass.",
-		 "Cerebral Angiogram - moyamoya disease."]
-text_features = tfidf.transform(texts)
-predictions = model3.predict(text_features)
-for text, predicted in zip(texts, predictions):
-  print('"{}"'.format(text))
-  print("  - Predicted as: '{}'".format(id_to_category[predicted]))
-  print("")
+linear.fit(X_train, y_train)
+y_pred = linear.predict(X_test)
 
 
-pickle.dump(model3,open('linearsvc.pkl', 'wb'))
+print("Creating LINEAR SVC Model Pickle Object Code")
+pickle.dump(linear,open('linearsvc.pkl', 'wb'))
 
-
-####
-
-
-####random forest MODEL PREDICTION
+####Random Forest Classifier MODEL PREDICTION 
+print("Running Random Forest Classifier Model Training & Testing")
 from sklearn.model_selection import train_test_split
 
-
-
-
-#pickle.dump(random,open('random.pkl','wb'))
-
-
-
-
-
-
-
-model4 = RandomForestClassifier()
+random = RandomForestClassifier()
 X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.2, random_state=3)
-model4.fit(X_train, y_train)
-y_pred = model4.predict(X_test)
-
-#texts = ["Consult for laparoscopic gastric bypass.",
-	#	 "Cerebral Angiogram - moyamoya disease."]
-text_features = tfidf.transform(texts)
-predictions = model4.predict(text_features)
-#for text, predicted in zip(texts, predictions):
- # print('"{}"'.format(text))
-  #print("  - Predicted as: '{}'".format(id_to_category[predicted]))
- # print("")
+random.fit(X_train, y_train)
+y_pred = random.predict(X_test)
 
 
-pickle.dump(model4,open('random.pkl', 'wb'))
+print("Creating Random Forest Classifier Model Pickle Object Code")
+pickle.dump(random,open('random.pkl', 'wb'))
 pickle.dump(id_to_category,open('id_to_category.pkl','wb'))
 
-####
 
+###LogisticRegression MODEL PREDICTION 
+print("Running  LogisticRegression Model Training & Testing")
+from sklearn.model_selection import train_test_split
 
-#print("RESULT@@@")
+logic = RandomForestClassifier()
+X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.2, random_state=3)
+logic.fit(X_train, y_train)
+y_pred = logic.predict(X_test)
 
-print(clf.predict(count_vect.transform([" Nasal endoscopy and partial rhinectomy due to squamous cell carcinoma, left nasal cavity."])))
-print(clf.predict(count_vect.transform(["  Whole body PET scanning."])))
+print("Creating LogisticRegression Model Pickle Object Code")
+pickle.dump(logic,open('logic.pkl', 'wb'))
 
-print("end_end_end")
+print("Model.py Executed and Created Respective Pickle Files")
+print("Now Run App")

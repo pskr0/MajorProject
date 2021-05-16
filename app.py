@@ -169,7 +169,7 @@ def predicts():
      
     
     return render_template('conform.html',filenme="{} ".format(filenme),multi_file_input='{}'.format(multi_file_input),multi_text_input='{}'.format(multi_text_input),random_file_input='{}'.format(random_file_input),random_text_input='{}'.format(random_text_input),logic_file_input='{}'.format(logic_file_input),logic_text_input='{}'.format(logic_text_input),linear_file_input='{}'.format(linear_file_input),linear_text_input='{}'.format(linear_text_input),a1='{} '.format(a1),a2='{} '.format(a2),b1='{} '.format(b1),b2='{} '.format(b2),c1='{} '.format(c1),c2='{} '.format(c2),d1='{} '.format(d1),d2='{} '.format(d2))
-    return redirect(url_for('final',Final_text = Finalresult_text))
+    #return redirect(url_for('final',Final_text = Finalresult_text))
 
 
 

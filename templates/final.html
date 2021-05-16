@@ -1,0 +1,38 @@
+
+<link rel="shortcut icon" href="/static/PSK_LOGO.jpg"/>
+
+<html>
+<head>
+<title>Health Reports Classifier</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+</head>
+
+<body align="center" style="background-color:#ccccff">
+<h3> Health Record Refering To Doctor's Various Model Prediction</h3> 
+          <br>
+ 
+ <tr> <th>Document Report Refering Medical Specialty   [{{filenme}}] <h4> &gt;&gt;&gt;&gt;{{Final_file}} </h4> </th> 
+    <br><br>
+ <th>Email,Text,Sms Report Refering Medical Specialty<h4>&gt;&gt;&gt;&gt; {{Final_text}}</h4></th></tr>
+ 
+ 
+ 
+ 
+<form action="/recheck" method="post">
+ <button type="submit" class="btn-large waves-effect waves-light orange">Check Other Reports</button>
+</form>
+  <br>
+<form action="/loginacc" method="post"> 
+  <button type="submit">Login </button><p style="color:red;">To Book Appointment</p>
+</form>
+</body>
+</html>

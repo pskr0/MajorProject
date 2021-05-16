@@ -19,17 +19,38 @@ table, th, td {
 <body align="center" style="background-color:#ccccff">
 <h3> Health Record Refering To Doctor's</h3> 
           <br>
-  <tr> <th>Document Report Refering Medical Specialty   [{{dat4}}] <h4> &gt;&gt;&gt;&gt;{{dat3}} </h4> </th> 
+  <tr> 
+<th>Document Report Refering Medical Specialty   [{{filenme}}] <br> 
+<br> 
+Multinomial NB &gt;&gt;&gt; {{multi_file_input}}&gt;&gt;{{a2}}%<br>
+RANDOM FOREST &gt;&gt;&gt; {{random_file_input}}&gt;&gt;{{b2}}%<br>
+LogisticRegression &gt;&gt;&gt; {{logic_file_input}}&gt;&gt;{{c2}}%<br>
+LinearSVC &gt;&gt;&gt; {{linear_file_input}}&gt;&gt;{{d2}}%<br>
+
+</th> 
     <br><br>
- <th>Email,Text,Sms Report Refering Medical Specialty<h4>&gt;&gt;&gt;&gt;&gt; {{dat2}}</h4></th></tr>
-  
+<th>
+Email,Text,Sms Report Refering Medical Specialty<br> 
+Multinomial NB &gt;&gt;&gt; {{multi_text_input}}&gt;&gt;{{a1}}%<br>
+RANDOM FOREST &gt;&gt;&gt; {{random_text_input}}&gt;&gt;{{b1}}%<br>
+LogisticRegression &gt;&gt;&gt; {{logic_text_input}}&gt;&gt;{{c1}}%<br>
+LinearSVC &gt;&gt;&gt; {{linear_text_input}}&gt;&gt;{{d1}}%<br>
+ 
+ </th></tr>
+  <br>
+  <br>
 
 <form action="/recheck" method="post">
  <button type="submit" class="btn-large waves-effect waves-light orange">Check Other Reports</button>
 </form>
   <br>
-<form action="/loginacc" method="post"> 
-  <button type="submit">Login </button><p style="color:red;">To Book Appointment</p>
+  <!--
+  <form action="/predict" method="get"> 
+<input type="submit" name="buttonfinal" value=1>  
+  </form>
+-->
+<form action="/finals" method="get"> 
+  <button type="submit" >Proceed For Result </button><p style="color:red;">Overall Result By All Models Accuracy</p>
 </form>
 </body>
 </html>

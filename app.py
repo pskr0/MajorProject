@@ -52,11 +52,6 @@ def cvrweb():
 @app.route('/code_login')
 def codelogin():
     return render_template('code_login.html')
-    
-@app.route('/finals',methods=['POST','GET'])
-def final(Final_text):
-    return render_template('final.html',Final_text='{}%'.format(Finalresult_text),Final_file='{}%'.format(Finalresult_file),filenme='{}%'.format(filenme))
-    #return render_template('final.html')
 
 
 
@@ -148,7 +143,7 @@ def predicts():
     if c1==50:
       Finalresult_text=logic_text_input
     if d1==50:
-      Finalresult_text=linear_count_text
+      Finalresult_text=linear_text_input
     if a1==25 and b1==25 and c1 == 25 and d1==25:
       Finalresult_text=random_text_input
      
@@ -161,7 +156,7 @@ def predicts():
     if c2==50:
       Finalresult_file=logic_file_input
     if d2==50:
-      Finalresult_file=linear_count_text
+      Finalresult_file=linear_file_input
     if a2==25 and b2==25 and c2== 25 and d2==25:
       Finalresult_file=random_file_input
         

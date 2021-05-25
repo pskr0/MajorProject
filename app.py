@@ -51,7 +51,7 @@ def cvrweb():
 
 @app.route('/code_login')
 def codelogin():
-    return render_template('code_login.html')
+    return render_template('login.html')
 
 
 

@@ -108,7 +108,15 @@ def predicts():
     
      
     if a2 >=75:
+      Finalresult_file=multi_file_input
+      
+    if b2 >=75:
       Finalresult_file=random_file_input
+      
+    if c2>=75:
+      Finalresult_file=logic_file_input      
+      
+      
     if a2 ==50:
       Finalresult_file=multi_file_input
     if b2 ==50:
@@ -117,8 +125,9 @@ def predicts():
       Finalresult_file=logic_file_input
     if d2==50:
       Finalresult_file=linear_file_input
+      
     if a2==25 and b2==25 and c2== 25 and d2==25:
-      Finalresult_file=random_file_input
+      Finalresult_file=logic_file_input
         
         
     return render_template('conform.html',Final_file='{} '.format(Finalresult_file),filenme='{} '.format(filenme),multi_file_input='{}'.format(multi_file_input),random_file_input='{}'.format(random_file_input),logic_file_input='{}'.format(logic_file_input),linear_file_input='{}'.format(linear_file_input),a2='{} '.format(a2),b2='{} '.format(b2),c2='{} '.format(c2),d2='{} '.format(d2))

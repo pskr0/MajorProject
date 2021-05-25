@@ -80,7 +80,7 @@ def predicts():
      # random_text_input=id_to_category[predicted]
     
     #RANDOMFOREST
-    ramdom_out=(random.predict(tfidf.transform([file_text])))
+    random_out=(random.predict(tfidf.transform([file_text])))
     for text, predicted in zip(file_text, random_out):
       random_file_input=id_to_category[predicted]
       

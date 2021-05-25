@@ -54,6 +54,10 @@ def codelogin():
     return render_template('code_login.html')
 
 
+@app.route('/Get_code')
+def getcode():
+    return render_template('github.com/pskr0/MajorProject.git')
+
 
 
 @app.route('/predict',methods=['POST','GET'])

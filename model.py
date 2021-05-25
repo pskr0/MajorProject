@@ -1,7 +1,7 @@
 import numpy as np #imported numpy and Assigned as np
 import pandas as pd #imported pandas and Assigned as pd
 import pickle
-df = pd.read_csv('mtsamples.csv')
+df = pd.read_csv('mtsamples half.csv')
 
 col = ['medical_specialty','keywords']
 df = df[col]
@@ -48,7 +48,7 @@ from sklearn.svm import LinearSVC
 
 ####MultinomialNB MODEL PREDICTION
 print("Running Multinomial NB Model Training & Testing")
-X_train, X_test, y_train, y_test = train_test_split(df['keywords'], df['medical_specialty'], random_state = 0)
+X_train, X_test, y_train, y_test = train_test_split(df['keywords'], df['medical_specialty'], random_state = 42)
 count_vect = CountVectorizer()
 X_train_counts = count_vect.fit_transform(X_train)
 tfidf_transformer = TfidfTransformer()
@@ -68,7 +68,7 @@ from sklearn.model_selection import train_test_split
 
 linear = LinearSVC()
 
-X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.2, random_state=3)
+X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.22, random_state=42)
 linear.fit(X_train, y_train)
 y_pred = linear.predict(X_test)
 
@@ -81,7 +81,7 @@ print("Running Random Forest Classifier Model Training & Testing")
 from sklearn.model_selection import train_test_split
 
 random = RandomForestClassifier()
-X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.2, random_state=3)
+X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.22, random_state=42)
 random.fit(X_train, y_train)
 y_pred = random.predict(X_test)
 
@@ -95,8 +95,8 @@ pickle.dump(id_to_category,open('id_to_category.pkl','wb'))
 print("Running  LogisticRegression Model Training & Testing")
 from sklearn.model_selection import train_test_split
 
-logic = RandomForestClassifier()
-X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.2, random_state=3)
+logic = LogisticRegression()
+X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.22, random_state=42)
 logic.fit(X_train, y_train)
 y_pred = logic.predict(X_test)
 
@@ -105,3 +105,21 @@ pickle.dump(logic,open('logic.pkl', 'wb'))
 
 print("Model.py Executed and Created Respective Pickle Files")
 print("Now Run App")
+print("TESTING ACCURACY")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

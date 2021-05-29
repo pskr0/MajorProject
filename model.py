@@ -1,7 +1,7 @@
 import numpy as np #imported numpy and Assigned as np
 import pandas as pd #imported pandas and Assigned as pd
 import pickle
-df = pd.read_csv('mtsamples half.csv')
+df = pd.read_csv('mtsamples.csv')
 
 col = ['medical_specialty','keywords']
 df = df[col]
@@ -68,7 +68,7 @@ from sklearn.model_selection import train_test_split
 
 linear = LinearSVC()
 
-X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.25, random_state=42)
+X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.22, random_state=42)
 linear.fit(X_train, y_train)
 y_pred = linear.predict(X_test)
 
@@ -81,7 +81,7 @@ print("Running Random Forest Classifier Model Training & Testing")
 from sklearn.model_selection import train_test_split
 
 random = RandomForestClassifier()
-X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.25, random_state=42)
+X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.22, random_state=42)
 random.fit(X_train, y_train)
 y_pred = random.predict(X_test)
 
@@ -96,7 +96,7 @@ print("Running  LogisticRegression Model Training & Testing")
 from sklearn.model_selection import train_test_split
 
 logic = LogisticRegression()
-X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.25, random_state=42)
+X_train, X_test, y_train, y_test, indices_train, indices_test = train_test_split(features, labels, df.index, test_size=0.22, random_state=42)
 logic.fit(X_train, y_train)
 y_pred = logic.predict(X_test)
 

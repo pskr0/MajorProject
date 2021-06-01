@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
   </style>
   
 
@@ -41,9 +42,11 @@
 <link href="/static/style.css" rel="stylesheet" type="text/css" media="screen" />
 
 </head>
-<body align="center" style = "background-color:#6f70a6">
+<body align="center" >
     <div id="container">
-	    <h1><u>Health Dashboard Login</u></h1>
+    <hr>
+	    <h1 ><u>Login to Classify Health Documents</u></h1>
+      <hr>
       <div id="loading">Loading...</div>
       <div id="loaded" class="hidden">
         <div id="main">
@@ -55,11 +58,14 @@
               <div class="clearfix"></div>
             </div>
             <p>
-              <button id="sign-out">Sign Out</button>
+             
+              <button  id="sign-out" class="btn btn-default btn-lg">
+          <span class="glyphicon glyphicon-log-out"></span> Sign out
+        </button>
 			  
 			  
 <form action="/app" method="post" align="center" enctype="multipart/form-data">           
-<button  id="appointment" >Proceed</button>
+<button  id="appointment" class>Proceed</button>
 </form>
 
 

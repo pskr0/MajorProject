@@ -22,9 +22,20 @@ vectorizer=pickle.load(open('vectorizer.pkl', 'rb'))
 tfidf=pickle.load(open('tfidf.pkl', 'rb'))
 
 
-@app.route('/')
+#@app.route('/')
+#def home():
+ #   return render_template('index.html')
+    
+@app.route('/',methods=['POST','GET'])
+def loginacc():
+    return render_template('login.html')  
+    
+    
+@app.route('/app',methods=['POST','GET'])
 def home():
-    return render_template('index.html')
+    return render_template('index.html')   
+    
+    
 
 
 @app.route('/recheck',methods=['POST','GET'])
@@ -32,9 +43,9 @@ def recheck():
     return render_template('index.html')
 
 
-@app.route('/loginacc',methods=['POST','GET'])
-def loginacc():
-    return render_template('login.html')
+#@app.route('/loginacc',methods=['POST','GET'])
+#def loginacc():
+ #   return render_template('login.html')
 
 @app.route('/filedata',methods=['POST','GET'])
 def filedata():
@@ -128,8 +139,8 @@ def predicts():
       
     if a2==25 and b2==25 and c2== 25 and d2==25:
       Finalresult_file=linear_file_input
-        
-        
+    os.remove(filenme)    
+    
     return render_template('conform.html',Final_file='{} '.format(Finalresult_file),filenme='{} '.format(filenme),multi_file_input='{}'.format(multi_file_input),random_file_input='{}'.format(random_file_input),logic_file_input='{}'.format(logic_file_input),linear_file_input='{}'.format(linear_file_input),a2='{} '.format(a2),b2='{} '.format(b2),c2='{} '.format(c2),d2='{} '.format(d2))
     
     

@@ -5,6 +5,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Login to Health DashBoard</title>
+  <style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </style>
+  
 
 	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
 	<!--
@@ -35,7 +41,7 @@
 <link href="/static/style.css" rel="stylesheet" type="text/css" media="screen" />
 
 </head>
-<body style = "background-color:#6f70a6">
+<body align="center" style = "background-color:#6f70a6">
     <div id="container">
 	    <h1><u>Health Dashboard Login</u></h1>
       <div id="loading">Loading...</div>
@@ -50,12 +56,24 @@
             </div>
             <p>
               <button id="sign-out">Sign Out</button>
-<a href=""><button id="appointment" >Book  Appointment</button>
-   </a>         </p>
+			  
+			  
+<form action="/app" method="post" align="center" enctype="multipart/form-data">           
+<button  id="appointment" >Proceed</button>
+</form>
+
+
+
+
+
+
+
+
+       </p>
           </div>
           <div id="user-signed-out" class="hidden">
             <div id="firebaseui-spa">
-              <h3>App:</h3>
+              
               <div id="firebaseui-container"></div>
             </div>
           </div>
